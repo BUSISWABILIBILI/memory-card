@@ -64,18 +64,50 @@ export default function App() {
   }
 
   if (loading) {
-    return <p className="loading">Loading Pokemon...</p>;
+    return (
+      <div className="loading-screen">
+        <div className="loading-card">
+          <div className="loading-spinner" />
+          <p>Loading your deck...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <main>
-      <Header />
-      <Scoreboard score={score} bestScore={bestScore} />
-      <p className="game-message">{message}</p>
-      <button className="reset-btn" onClick={resetGame}>
-        Reset Game
-      </button>
-      <CardGrid pokemon={pokemon} onCardClick={handleCardClick} />
+    <main className="app-shell">
+      <div className="background-orb background-orb-left" />
+      <div className="background-orb background-orb-right" />
+      <div className="game-board">
+        <Header />
+        <section className="dashboard" aria-label="Game status">
+          <Scoreboard score={score} bestScore={bestScore} />
+          <div className="status-panel">
+            <span className="status-light" />
+            <div>
+              <span className="status-label">Current mission</span>
+              <p className="game-message">{message}</p>
+            </div>
+          </div>
+          <button
+            aria-label="Reset game"
+            className="reset-btn"
+            onClick={resetGame}
+          >
+            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+              <path
+                d="M20 11a8.1 8.1 0 0 0-15.5-3M4 4v4h4m-4 5a8.1 8.1 0 0 0 15.5 3m.5 4v-4h-4"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              />
+            </svg>
+            <span>Reset game</span>
+          </button>
+        </section>
+        <CardGrid pokemon={pokemon} onCardClick={handleCardClick} />
+      </div>
     </main>
   );
 }
