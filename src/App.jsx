@@ -15,6 +15,7 @@ export default function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState("Click each Pokemon only once!");
 
   useEffect(() => {
     async function loadPokemon() {
@@ -28,16 +29,24 @@ export default function App() {
 
   function handleCardClick(id) {
     if (clickedPokemon.includes(id)) {
+      setMessage("Oops! You clicked the same Pokemon twice. Try again!");
       setScore(0);
       setClickedPokemon([]);
     } else {
       const newScore = score + 1;
 
+      setMessage("Good choice! Keep going.");
       setScore(newScore);
       setClickedPokemon([...clickedPokemon, id]);
 
       if (newScore > bestScore) {
         setBestScore(newScore);
+      }
+
+      if (newScore === pokemon.length) {
+        setMessage("You won! You clicked all Pokemon without repeating.");
+        setScore(0);
+        setClickedPokemon([]);
       }
     }
 
@@ -52,6 +61,7 @@ export default function App() {
     <main>
       <Header />
       <Scoreboard score={score} bestScore={bestScore} />
+      <p className="game-message">{message}</p>
       <CardGrid pokemon={pokemon} onCardClick={handleCardClick} />
     </main>
   );

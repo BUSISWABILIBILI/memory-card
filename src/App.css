@@ -73,6 +73,12 @@ header p {
   text-align: center;
 }
 
+.game-message {
+  margin-bottom: 24px;
+  font-weight: 600;
+  color: #334155;
+}
+
 @media (max-width: 600px) {
   main {
     padding: 20px;
