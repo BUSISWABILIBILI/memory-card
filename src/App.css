@@ -392,17 +392,6 @@
   border-color: #82bcf6;
 }
 
-.card-number {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  z-index: 1;
-  color: #5f789e;
-  font-size: 0.63rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-}
-
 .card-image-wrap {
   display: grid;
   height: 126px;
@@ -632,11 +621,6 @@
   .card {
     padding: 8px;
     border-radius: 16px;
-  }
-
-  .card-number {
-    top: 13px;
-    left: 13px;
   }
 
   .card-image-wrap {
