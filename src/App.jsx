@@ -13,7 +13,9 @@ export default function App() {
   const [pokemon, setPokemon] = useState([]);
   const [clickedPokemon, setClickedPokemon] = useState([]);
   const [score, setScore] = useState(0);
-  const [bestScore, setBestScore] = useState(0);
+  const [bestScore, setBestScore] = useState(() => {
+    return Number(localStorage.getItem("bestScore")) || 0;
+  });
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("Click each Pokemon only once!");
 
