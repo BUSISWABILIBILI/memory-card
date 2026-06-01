@@ -29,6 +29,13 @@ export default function App() {
     loadPokemon();
   }, []);
 
+  function resetGame() {
+    setScore(0);
+    setClickedPokemon([]);
+    setMessage("Game reset. Click each Pokemon only once!");
+    setPokemon(shuffleCards(pokemon));
+  }
+
   function handleCardClick(id) {
     if (clickedPokemon.includes(id)) {
       setMessage("Oops! You clicked the same Pokemon twice. Try again!");
@@ -43,6 +50,7 @@ export default function App() {
 
       if (newScore > bestScore) {
         setBestScore(newScore);
+        localStorage.setItem("bestScore", newScore);
       }
 
       if (newScore === pokemon.length) {
@@ -64,6 +72,9 @@ export default function App() {
       <Header />
       <Scoreboard score={score} bestScore={bestScore} />
       <p className="game-message">{message}</p>
+      <button className="reset-btn" onClick={resetGame}>
+        Reset Game
+      </button>
       <CardGrid pokemon={pokemon} onCardClick={handleCardClick} />
     </main>
   );
