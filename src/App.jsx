@@ -1,8 +1,9 @@
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Scoreboard from "./components/Scoreboard";
 import CardGrid from "./components/CardGrid";
 import { fetchPokemon } from "./services/pokemonApi";
-import "/Apps.css";
+import "./App.css";
 
 function shuffleCards(cards) {
   return [...cards].sort(() => Math.random() - 0.5);
@@ -44,7 +45,7 @@ export default function App() {
   }
 
   if (loading) {
-    return <div className="loading">Loading Pokemon...</div>;
+    return <p className="loading">Loading Pokemon...</p>;
   }
 
   return (
